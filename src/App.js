@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import LegalizeProcess from "./components/LegalizeContainer"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from "./assets/theme"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{height: "100vh"}}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar/>
+        <div style={{height: "calc(100% - 64px)", display: "flex",
+        flexDirection: "column"}}>
+          <LegalizeProcess style={{flex: "1 0 auto"}}/>
+          <div style={{flexShrink: "0"}}>
+            <Footer />
+          </div>
+        </div>
+      </ThemeProvider>
     </div>
   );
 }
