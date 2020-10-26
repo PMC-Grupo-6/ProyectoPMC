@@ -6,6 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import DescriptionIcon from '@material-ui/icons/Description';
 
+import {
+  Link,
+  NavLink
+} from "react-router-dom";
+import { Router } from '@material-ui/icons';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -13,26 +19,38 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  
   title: {
     flexGrow: 1,
+  },
+  inicio: {
+    marginLeft: theme.spacing(2),
+    color:"black",
+    textAlign:"right",
   },
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+
   return (
+ 
     <div className={classes.root}>
       <AppBar color="white"position="static">
-        <Toolbar>
+        <Toolbar> 
           <IconButton edge="start" className={classes.menuButton} color="primary" aria-label="menu">
             <DescriptionIcon  />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Link variant="h6" className={classes.menuButton} to="/">
             Clack
-          </Typography>
+          </Link>      
+          <Link variant="h6" className={classes.inicio} to="/login">
+            Iniciar Sesión
+          </Link>    
         </Toolbar>
       </AppBar>
     </div>
+    
   );
 }
