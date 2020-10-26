@@ -89,7 +89,6 @@ export default function Login() {
               autoComplete="current-password"
               onChange={(ev) => setPassword(ev.target.value)}
             />
-             <Link to="/">
             <Button
               type="submit"
               fullWidth
@@ -98,9 +97,9 @@ export default function Login() {
               className={classes.enviar}
               onClick={submit}
             >
-              Iniciar Sesión
+              <a href="/" class="btn btn-success">Iniciar Sesion</a>
             </Button>
-            </Link>
+           
             <Grid container>
               <Grid item xs>
                 
