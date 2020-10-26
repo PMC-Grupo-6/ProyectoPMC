@@ -13,7 +13,7 @@ var firebaseConfig={
 }
 
 if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig, 'ProyectoPMC');
+    firebase.initializeApp(firebaseConfig);
  }
 
 export const auth=firebase.auth();
