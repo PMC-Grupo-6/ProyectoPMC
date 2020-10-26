@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import DescriptionIcon from '@material-ui/icons/Description';
 
 import {
@@ -22,17 +23,17 @@ const useStyles = makeStyles((theme) => ({
   
   title: {
     flexGrow: 1,
+    display: "flex",
+    alignItems: "center"
   },
   inicio: {
     marginLeft: theme.spacing(2),
-    color:"black",
-    textAlign:"right",
+    color:"black"
   },
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-
 
   return (
  
@@ -42,12 +43,17 @@ export default function ButtonAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="primary" aria-label="menu">
             <DescriptionIcon  />
           </IconButton>
-          <Link variant="h6" className={classes.menuButton} to="/">
+          <div className={classes.title}>
+          <Typography variant="h6" >
             Clack
-          </Link>      
-          <Link variant="h6" className={classes.inicio} to="/login">
+          </Typography>
+          <Button style={{marginLeft: "16px"}} component={Link}  variant="outlined" to="/">
+            Legalizar
+          </Button> 
+          </div>
+          <Button component={Link} variant="contained" color="primary" className={classes.inicio} to="/login">
             Iniciar Sesión
-          </Link>    
+          </Button>    
         </Toolbar>
       </AppBar>
     </div>

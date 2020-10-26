@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useFirebaseApp } from "reactfire";
 import Footer from "./Footer";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,13 +46,21 @@ export default function Login() {
   const [mail, setEmail] = useState("");
   const [contra, setPassword] = useState("");
   const firebase = useFirebaseApp();
+  const history = useHistory()
 
   const submit = async () => {
-    firebase.auth().createUserWithEmailAndPassword(mail.trim(), contra);
+    await firebase.auth().createUserWithEmailAndPassword(mail.trim(), contra);
   };
+
+  const signIn = async () => {
+    await firebase.auth().signInWithEmailAndPassword(mail.trim(), contra);
+    history.push("/")
+  };
+
   const logOut = async () => {
     await firebase.auth().signOut();
   };
+
   var user = firebase.auth().currentUser;
 
  
@@ -120,17 +129,27 @@ export default function Login() {
               onChange={(ev) => setPassword(ev.target.value)}
             />
             <Link to="/">
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={submit}
-            >
-              <a class="btn btn-success">Iniciar Sesion</a>
-               
-            </Button>
-            </Link>
-           
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={signIn}
+                >
+                  Iniciar Sesion
+                  
+                </Button>
+                <br/>
+                <br/>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color="primary"
+                  onClick={submit}
+                >
+                  Registrarse
+                  
+                </Button>
+                </Link>
             <Grid container>
               <Grid item xs>
                 
