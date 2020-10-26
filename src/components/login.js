@@ -12,9 +12,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { useFirebaseApp } from "reactfire";
 import Footer from "./Footer";
 import { useHistory } from "react-router-dom";
+import {auth} from "../firebase-config" 
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,23 +45,22 @@ export default function Login() {
   const classes = useStyles();
   const [mail, setEmail] = useState("");
   const [contra, setPassword] = useState("");
-  const firebase = useFirebaseApp();
   const history = useHistory()
 
   const submit = async () => {
-    await firebase.auth().createUserWithEmailAndPassword(mail.trim(), contra);
+    await auth.createUserWithEmailAndPassword(mail.trim(), contra);
   };
 
   const signIn = async () => {
-    await firebase.auth().signInWithEmailAndPassword(mail.trim(), contra);
+    await auth.signInWithEmailAndPassword(mail.trim(), contra);
     history.push("/")
   };
 
   const logOut = async () => {
-    await firebase.auth().signOut();
+    await auth.signOut();
   };
 
-  var user = firebase.auth().currentUser;
+  var user = auth.currentUser;
 
  
 
