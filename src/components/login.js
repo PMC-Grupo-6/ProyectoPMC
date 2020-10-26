@@ -89,10 +89,7 @@ export default function Login() {
               autoComplete="current-password"
               onChange={(ev) => setPassword(ev.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Recordarme"
-            />
+             <Link to="/">
             <Button
               type="submit"
               fullWidth
@@ -103,16 +100,13 @@ export default function Login() {
             >
               Iniciar Sesión
             </Button>
+            </Link>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Olvidaste tu constraseña?
-                </Link>
+                
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"No tienes una cuenta? Regístrate"}
-                </Link>
+               
               </Grid>
             </Grid>
           </form>
