@@ -45,13 +45,16 @@ export default function Login() {
   const [mail, setEmail] = useState("");
   const [contra, setPassword] = useState("");
   const firebase = useFirebaseApp();
+
   const submit = async () => {
-    while (mail == null && contra == null) {}
     firebase.auth().createUserWithEmailAndPassword(mail.trim(), contra);
   };
   const logOut = async () => {
     await firebase.auth().signOut();
   };
+  var user = firebase.auth().currentUser;
+
+ 
 
   return (
     <div>
@@ -61,6 +64,31 @@ export default function Login() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
+          {
+            user  &&
+            <>
+             <Typography component="h3" >
+          Bienvenido a Clack 
+          </Typography>
+          <Typography component="h3" >
+          {user.email}
+        </Typography>
+            <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.enviar}
+            onClick={logOut}
+          >
+            <a href="/" class="btn btn-success">Cerrar Sesion</a>
+          </Button>
+          
+         
+        </>
+          }
+          {!user &&
+            <>
           <Typography component="h1" variant="h5">
             Iniciar Sesión
           </Typography>
@@ -90,14 +118,12 @@ export default function Login() {
               onChange={(ev) => setPassword(ev.target.value)}
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.enviar}
               onClick={submit}
             >
-              <a href="/" class="btn btn-success">Iniciar Sesion</a>
+              <a class="btn btn-success">Iniciar Sesion</a>
             </Button>
            
             <Grid container>
@@ -109,6 +135,8 @@ export default function Login() {
               </Grid>
             </Grid>
           </form>
+          </>
+          }
         </div>
       </Container>
       <div className={classes.footer}>
