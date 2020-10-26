@@ -73,6 +73,7 @@ export default function Login() {
           <Typography component="h3" >
           {user.email}
         </Typography>
+        <Link to="/">
             <Button
             type="submit"
             fullWidth
@@ -81,8 +82,9 @@ export default function Login() {
             className={classes.enviar}
             onClick={logOut}
           >
-            <a href="/" class="btn btn-success">Cerrar Sesion</a>
+            <a  href="/" class="btn btn-success">Cerrar Sesion</a>
           </Button>
+          </Link>
           
          
         </>
@@ -117,6 +119,7 @@ export default function Login() {
               autoComplete="current-password"
               onChange={(ev) => setPassword(ev.target.value)}
             />
+            <Link to="/">
             <Button
               fullWidth
               variant="contained"
@@ -124,7 +127,9 @@ export default function Login() {
               onClick={submit}
             >
               <a class="btn btn-success">Iniciar Sesion</a>
+               
             </Button>
+            </Link>
            
             <Grid container>
               <Grid item xs>
