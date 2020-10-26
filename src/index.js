@@ -7,6 +7,7 @@ import {
   FirebaseAppProvider
 }from 'reactfire'
 import firebaseConfig from './firebase-config';
+
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
   <React.StrictMode>

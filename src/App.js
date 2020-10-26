@@ -1,3 +1,4 @@
+import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LegalizeProcess from "./components/LegalizeContainer"
 import Navbar from "./components/Navbar"
@@ -11,6 +12,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
 function App() {
   return (
     <div style={{height: "100vh"}}>

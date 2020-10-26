@@ -10,10 +10,11 @@ var firebaseConfig={
         messagingSenderId: "683390242781",
         appId: "1:683390242781:web:401a0842fc8745fc30b034",
         measurementId: "G-VJ4NJ4Q4V8"
-    
-     
 }
 
-const fire=firebase.initializeApp(firebaseConfig);
-export const auth=fire.auth();
-export default fire;
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig, 'ProyectoPMC');
+ }
+
+export const auth=firebase.auth();
+export default firebase;
