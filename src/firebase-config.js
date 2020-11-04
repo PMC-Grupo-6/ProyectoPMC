@@ -1,7 +1,7 @@
-import firebase from 'firebase'
+import * as firebase from 'firebase'
 
 
-var firebaseConfig={
+export const firebaseConfig={
     apiKey: "AIzaSyCjiSpaMdXlyPl4eNlMoKoXRfjkk8qi6Us",
         authDomain: "proyectopmc-c6b20.firebaseapp.com",
         databaseURL: "https://proyectopmc-c6b20.firebaseio.com",
@@ -12,9 +12,10 @@ var firebaseConfig={
         measurementId: "G-VJ4NJ4Q4V8"
 }
 
+
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
  }
-
 export const auth=firebase.auth();
+export const analytics=firebase.analytics();
 export default firebase;

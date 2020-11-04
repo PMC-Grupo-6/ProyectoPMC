@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import firebase from './firebase-config';
+
+
+firebase.analytics().logEvent('entro a la app');
+
 
 ReactDOM.render(
 
