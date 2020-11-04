@@ -5,6 +5,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Stepper from "./Stepper"
 import { useHistory } from "react-router-dom";
 import {auth} from "../firebase-config" 
+import firebase from '../firebase-config';
+
+
+firebase.analytics().logEvent('entro a  legalizar');
+
 const useStyles = makeStyles({
   root: {
     width: "100%",

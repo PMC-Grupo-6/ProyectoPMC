@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import SelectDocument from "./SelectDocument"
 import TermsAndConditions from "./TermsAndConditions"
 import PaymentForm from "./PaymentForm"
-
+import firebase from '../firebase-config';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 function getSteps() {
   return ['Seleccionar documento', 'Verificar identidad', 'Aceptar términos', 'Realizar Pago'];
 }
-
+firebase.analytics().logEvent('entro a  legalizar');
 function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
