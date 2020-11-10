@@ -13,6 +13,7 @@ import Container from "@material-ui/core/Container";
 import Footer from "./Footer";
 import { useHistory } from "react-router-dom";
 import {auth} from "../firebase-config" 
+import { useAlert } from 'react-alert'
 
 
 
@@ -46,13 +47,48 @@ export default function Login() {
   const [mail, setEmail] = useState("");
   const [contra, setPassword] = useState("");
   const history = useHistory()
+  const alert = useAlert()
 
   const submit = async () => {
-    await auth.createUserWithEmailAndPassword(mail.trim(), contra);
+    auth.createUserWithEmailAndPassword(mail.trim(), contra).catch(error=>{
+     switch(error.code) {
+          case 'auth/email-already-in-use':
+                alert.show("El correo electronico ya está en uso")
+                break;
+          case 'auth/invalid-email':
+                alert.show("Debe ingresar un email valido")
+                break;
+          case 'auth/invalid-password':
+                alert.show("La contraseña es invalida")
+                break;
+          case 'auth/weak-password':
+                alert.show("La contraseña es debil")
+                break;
+          default:
+                 alert.show(error.message)
+                  break;
+                  
+       }
+      
+    });
   };
 
   const signIn = async () => {
-    await auth.signInWithEmailAndPassword(mail.trim(), contra);
+    auth.signInWithEmailAndPassword(mail.trim(), contra).catch(error=>{
+      console.log(error.code)
+      switch(error.code) {
+        case 'auth/user-not-found':
+              alert.show("Debe registrarse para poder iniciar sesion")
+              break;
+        case 'auth/wrong-password':
+              alert.show("La contraseña no es correcta")
+              break;
+        default:
+          alert.show(error.message)
+          break;
+     }
+
+    });
     history.push("/")
   };
 
