@@ -50,7 +50,11 @@ export default function Login() {
   const alert = useAlert()
 
   const submit = async () => {
-    auth.createUserWithEmailAndPassword(mail.trim(), contra).catch(error=>{
+    try{
+      auth.createUserWithEmailAndPassword(mail.trim(), contra)
+      alert.show("Registro exitoso")
+    }
+    catch(error){
      switch(error.code) {
           case 'auth/email-already-in-use':
                 alert.show("El correo electronico ya está en uso")
@@ -69,8 +73,10 @@ export default function Login() {
                   break;
                   
        }
+       
       
-    });
+    }
+   
   };
 
   const signIn = async () => {
