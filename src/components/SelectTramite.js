@@ -38,7 +38,7 @@ export default function SimpleSelect() {
     <div>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">
-          Escoger tipo de trámite
+          Escoger trámite
         </InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"

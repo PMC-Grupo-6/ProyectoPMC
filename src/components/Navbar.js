@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -31,7 +31,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-  var user = auth.currentUser;
+  console.log(auth);
+  const [loggedUser, setLoggedUser] = useState(null);
+
+  auth.onAuthStateChanged(function (user) {
+    if (user) {
+      setLoggedUser(user);
+    } else {
+      // No user is signed in.
+      setLoggedUser(null);
+    }
+  });
+
+  const user = auth.currentUser;
+
+  console.log(user);
 
   return (
     <div className={classes.root}>
@@ -63,7 +77,7 @@ export default function ButtonAppBar() {
             className={classes.inicio}
             to="/login"
           >
-            {user ? "Mi cuenta" : "Iniciar Sesión"}
+            {loggedUser ? "Mi cuenta" : "Iniciar Sesión"}
           </Button>
         </Toolbar>
       </AppBar>

@@ -47,6 +47,17 @@ export default function Login() {
   const history = useHistory();
   const alert = useAlert();
 
+  const [loggedUser, setLoggedUser] = useState(null);
+
+  auth.onAuthStateChanged(function (user) {
+    if (user) {
+      setLoggedUser(user);
+    } else {
+      // No user is signed in.
+      setLoggedUser(null);
+    }
+  });
+
   const submit = async () => {
     try {
       auth.createUserWithEmailAndPassword(mail.trim(), contra);
@@ -107,7 +118,7 @@ export default function Login() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          {user && (
+          {loggedUser && (
             <>
               <Typography component="h3">Bienvenido a Clack</Typography>
               <Typography component="h3">{user.email}</Typography>
@@ -127,7 +138,7 @@ export default function Login() {
               </Link>
             </>
           )}
-          {!user && (
+          {!loggedUser && (
             <>
               <Typography component="h1" variant="h5">
                 Iniciar Sesión
